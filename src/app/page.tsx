@@ -1,4 +1,6 @@
 import FadeIn from "@/components/FadeIn"
+import { projects } from "@/data/projects"
+import Link from "next/link"
 
 export default function Home() {
   return (
@@ -32,69 +34,55 @@ export default function Home() {
         <h2 className="text-3xl font-bold mb-12">Projects</h2>
         
         <div className="grid gap-6">
-          
-          <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition">
-            <h3 className="text-xl font-semibold mb-2">Football Sentiment Analysis</h3>
-            <p className="text-gray-400 mb-4">
-              Analyzing social media sentiment vs football performance. 
-              Compared 5 NLP methods, achieved 98.6% accuracy with transformers.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-4">
-              <span className="bg-gray-800 px-3 py-1 rounded text-sm text-gray-300">Python</span>
-              <span className="bg-gray-800 px-3 py-1 rounded text-sm text-gray-300">NLP</span>
-              <span className="bg-gray-800 px-3 py-1 rounded text-sm text-gray-300">Transformers</span>
-              <span className="bg-gray-800 px-3 py-1 rounded text-sm text-gray-300">Streamlit</span>
+          {projects.map((project) => (
+            <div 
+              key={project.slug}
+              className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition"
+            >
+              <Link href={`/projects/${project.slug}`}>
+                <h3 className="text-xl font-semibold mb-2 hover:text-blue-400 transition">
+                  {project.title}
+                </h3>
+              </Link>
+              <p className="text-gray-400 mb-4">{project.description}</p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.tags.map((tag) => (
+                  <span 
+                    key={tag}
+                    className="bg-gray-800 px-3 py-1 rounded text-sm text-gray-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="flex gap-4">
+                <a 
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer" 
+                  className="text-blue-400 hover:text-blue-300"
+                >
+                  GitHub
+                </a>
+                {project.live && (
+                  <a 
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:text-blue-300"
+                  >
+                    Live Demo
+                  </a>
+                )}
+                <Link 
+                  href={`/projects/${project.slug}`}
+                  className="text-blue-400 hover:text-blue-300"
+                >
+                  Read More
+                </Link>
+              </div>
             </div>
-            <div className="flex gap-4">
-              <a href="https://github.com/MinotaurG/football-sentiment-analysis" className="text-blue-400 hover:text-blue-300">GitHub</a>
-              <a href="#" className="text-blue-400 hover:text-blue-300">Live Demo</a>
-            </div>
-          </div>
-
-          <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition">
-            <h3 className="text-xl font-semibold mb-2">Online Bookstore</h3>
-            <p className="text-gray-400 mb-4">
-              Full-stack e-commerce application with user authentication and shopping cart.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-4">
-              <span className="bg-gray-800 px-3 py-1 rounded text-sm text-gray-300">Java</span>
-              <span className="bg-gray-800 px-3 py-1 rounded text-sm text-gray-300">React</span>
-              <span className="bg-gray-800 px-3 py-1 rounded text-sm text-gray-300">Vite</span>
-              <span className="bg-gray-800 px-3 py-1 rounded text-sm text-gray-300">DynamoDB</span>
-            </div>
-            <div className="flex gap-4">
-              <a href="#" className="text-blue-400 hover:text-blue-300">GitHub</a>
-            </div>
-          </div>
-
-          <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition">
-            <h3 className="text-xl font-semibold mb-2">Mulyam Jewelry</h3>
-            <p className="text-gray-400 mb-4">
-              E-commerce website for jewelry shopping with product catalog and checkout flow.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-4">
-              <span className="bg-gray-800 px-3 py-1 rounded text-sm text-gray-300">Node.js</span>
-              <span className="bg-gray-800 px-3 py-1 rounded text-sm text-gray-300">Express</span>
-            </div>
-            <div className="flex gap-4">
-              <a href="#" className="text-blue-400 hover:text-blue-300">GitHub</a>
-            </div>
-          </div>
-
-          <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition">
-            <h3 className="text-xl font-semibold mb-2">DevOps Toolkit</h3>
-            <p className="text-gray-400 mb-4">
-              Bash scripts for network troubleshooting, server health monitoring, and log analysis.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-4">
-              <span className="bg-gray-800 px-3 py-1 rounded text-sm text-gray-300">Bash</span>
-              <span className="bg-gray-800 px-3 py-1 rounded text-sm text-gray-300">Linux</span>
-            </div>
-            <div className="flex gap-4">
-              <a href="#" className="text-blue-400 hover:text-blue-300">GitHub</a>
-            </div>
-          </div>
-
+          ))}
         </div>
       </section>
 
@@ -131,7 +119,7 @@ export default function Home() {
             <ul className="space-y-2 text-gray-400">
               <li>React / Next.js</li>
               <li>Node.js</li>
-              <li>Streamlit</li>
+              <li>Spring Boot</li>
               <li>REST APIs</li>
             </ul>
           </div>
@@ -141,8 +129,8 @@ export default function Home() {
             <ul className="space-y-2 text-gray-400">
               <li>Git / GitHub</li>
               <li>Linux</li>
-              <li>DynamoDB</li>
-              <li>AWS</li>
+              <li>Docker</li>
+              <li>AWS / DynamoDB</li>
             </ul>
           </div>
 
@@ -152,11 +140,39 @@ export default function Home() {
       {/* Contact Section */}
       <section id="contact" className="px-8 py-20 max-w-4xl mx-auto border-t border-gray-800">
         <h2 className="text-3xl font-bold mb-8">Contact</h2>
-        <div className="flex gap-8">
-          <a href="https://github.com/MinotaurG" className="text-blue-400 hover:text-blue-300 transition">GitHub</a>
-          <a href="#" className="text-blue-400 hover:text-blue-300 transition">LinkedIn</a>
-          <a href="#" className="text-blue-400 hover:text-blue-300 transition">Medium</a>
-          <a href="#" className="text-blue-400 hover:text-blue-300 transition">dev.to</a>
+        <div className="flex flex-wrap gap-8">
+          <a 
+            href="https://github.com/MinotaurG"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:text-blue-300 transition"
+          >
+            GitHub
+          </a>
+          <a 
+            href="https://www.linkedin.com/in/aditya-shubham/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:text-blue-300 transition"
+          >
+            LinkedIn
+          </a>
+          <a 
+            href="https://medium.com/@minotaurg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:text-blue-300 transition"
+          >
+            Medium
+          </a>
+          <a 
+            href="https://dev.to/minotaurg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:text-blue-300 transition"
+          >
+            dev.to
+          </a>
         </div>
       </section>
 
