@@ -1,20 +1,30 @@
+import FadeIn from "@/components/FadeIn"
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-gray-950 text-white">
       
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col justify-center px-8 max-w-4xl mx-auto">
-        <h1 className="text-5xl font-bold mb-4">MinotaurG</h1>
-        <p className="text-2xl text-gray-400 mb-6">Developer who knows the maze.</p>
-        <p className="text-lg text-gray-300 max-w-2xl mb-8">
-          I build data pipelines, full-stack applications, and DevOps tools.
-          Currently exploring the intersection of machine learning and real-world data.
-        </p>
-        <nav className="flex gap-6">
-          <a href="#projects" className="text-blue-400 hover:text-blue-300 transition">Projects</a>
-          <a href="#skills" className="text-blue-400 hover:text-blue-300 transition">Skills</a>
-          <a href="#contact" className="text-blue-400 hover:text-blue-300 transition">Contact</a>
-        </nav>
+        <FadeIn>
+          <h1 className="text-5xl font-bold mb-4">MinotaurG</h1>
+        </FadeIn>
+        <FadeIn delay={0.1}>
+          <p className="text-2xl text-gray-400 mb-6">Developer who knows the maze.</p>
+        </FadeIn>
+        <FadeIn delay={0.2}>
+          <p className="text-lg text-gray-300 max-w-2xl mb-8">
+            I build data pipelines, full-stack applications, and DevOps tools.
+            Currently exploring the intersection of machine learning and real-world data.
+          </p>
+        </FadeIn>
+        <FadeIn delay={0.3}>
+          <nav className="flex gap-6">
+            <a href="#projects" className="text-blue-400 hover:text-blue-300 transition">Projects</a>
+            <a href="#skills" className="text-blue-400 hover:text-blue-300 transition">Skills</a>
+            <a href="#contact" className="text-blue-400 hover:text-blue-300 transition">Contact</a>
+          </nav>
+        </FadeIn>
       </section>
 
       {/* Projects Section */}
@@ -23,9 +33,8 @@ export default function Home() {
         
         <div className="grid gap-6">
           
-          {/* Project 1 */}
           <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition">
-            <h3 className="text-xl font-semibold mb-2">🏆 Football Sentiment Analysis</h3>
+            <h3 className="text-xl font-semibold mb-2">Football Sentiment Analysis</h3>
             <p className="text-gray-400 mb-4">
               Analyzing social media sentiment vs football performance. 
               Compared 5 NLP methods, achieved 98.6% accuracy with transformers.
@@ -42,9 +51,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Project 2 */}
           <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition">
-            <h3 className="text-xl font-semibold mb-2">📚 Online Bookstore</h3>
+            <h3 className="text-xl font-semibold mb-2">Online Bookstore</h3>
             <p className="text-gray-400 mb-4">
               Full-stack e-commerce application with user authentication and shopping cart.
             </p>
@@ -59,9 +67,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Project 3 */}
           <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition">
-            <h3 className="text-xl font-semibold mb-2">💎 Mulyam Jewelry</h3>
+            <h3 className="text-xl font-semibold mb-2">Mulyam Jewelry</h3>
             <p className="text-gray-400 mb-4">
               E-commerce website for jewelry shopping with product catalog and checkout flow.
             </p>
@@ -74,9 +81,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Project 4 */}
           <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition">
-            <h3 className="text-xl font-semibold mb-2">🔧 DevOps Toolkit</h3>
+            <h3 className="text-xl font-semibold mb-2">DevOps Toolkit</h3>
             <p className="text-gray-400 mb-4">
               Bash scripts for network troubleshooting, server health monitoring, and log analysis.
             </p>
@@ -111,7 +117,7 @@ export default function Home() {
           </div>
 
           <div>
-            <h3 className="text-blue-400 font-semibold mb-4">Data & ML</h3>
+            <h3 className="text-blue-400 font-semibold mb-4">Data and ML</h3>
             <ul className="space-y-2 text-gray-400">
               <li>Pandas / NumPy</li>
               <li>Scikit-learn</li>
@@ -121,7 +127,7 @@ export default function Home() {
           </div>
 
           <div>
-            <h3 className="text-blue-400 font-semibold mb-4">Web & Backend</h3>
+            <h3 className="text-blue-400 font-semibold mb-4">Web and Backend</h3>
             <ul className="space-y-2 text-gray-400">
               <li>React / Next.js</li>
               <li>Node.js</li>
@@ -131,7 +137,7 @@ export default function Home() {
           </div>
 
           <div>
-            <h3 className="text-blue-400 font-semibold mb-4">Tools & Infra</h3>
+            <h3 className="text-blue-400 font-semibold mb-4">Tools and Infra</h3>
             <ul className="space-y-2 text-gray-400">
               <li>Git / GitHub</li>
               <li>Linux</li>
@@ -156,7 +162,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="px-8 py-8 text-center text-gray-500 border-t border-gray-800">
-        <p>© 2025 MinotaurG</p>
+        <p>2025 MinotaurG</p>
       </footer>
 
     </main>
