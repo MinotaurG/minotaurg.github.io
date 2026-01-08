@@ -9,22 +9,31 @@ export default function Home() {
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col justify-center px-8 max-w-4xl mx-auto">
         <FadeIn>
-          <h1 className="text-5xl font-bold mb-4">MinotaurG</h1>
+          <h1 className="text-5xl font-bold mb-2">MinotaurG</h1>
+          <p className="text-2xl text-gray-500 mb-6">Aditya Shubham</p>
         </FadeIn>
         <FadeIn delay={0.1}>
-          <p className="text-2xl text-gray-400 mb-6">Developer who knows the maze.</p>
+          <p className="text-xl text-gray-400 mb-6">
+            Technical Program Manager | Data & Analytics | ML
+          </p>
         </FadeIn>
         <FadeIn delay={0.2}>
           <p className="text-lg text-gray-300 max-w-2xl mb-8">
-            I build data pipelines, full-stack applications, and DevOps tools.
-            Currently exploring the intersection of machine learning and real-world data.
+            I build data pipelines, analytics automation, and full-stack applications. 
           </p>
         </FadeIn>
         <FadeIn delay={0.3}>
-          <nav className="flex gap-6">
+          <nav className="flex flex-wrap gap-4">
             <a href="#projects" className="text-blue-400 hover:text-blue-300 transition">Projects</a>
             <a href="#skills" className="text-blue-400 hover:text-blue-300 transition">Skills</a>
             <a href="#contact" className="text-blue-400 hover:text-blue-300 transition">Contact</a>
+            <a 
+              href="/resume.pdf" 
+              className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition"
+              download
+            >
+              Resume ↓
+            </a>
           </nav>
         </FadeIn>
       </section>
@@ -138,43 +147,48 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="px-8 py-20 max-w-4xl mx-auto border-t border-gray-800">
-        <h2 className="text-3xl font-bold mb-8">Contact</h2>
-        <div className="flex flex-wrap gap-8">
-          <a 
-            href="https://github.com/MinotaurG"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:text-blue-300 transition"
-          >
-            GitHub
-          </a>
-          <a 
-            href="https://www.linkedin.com/in/aditya-shubham/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:text-blue-300 transition"
-          >
-            LinkedIn
-          </a>
-          <a 
-            href="https://medium.com/@minotaurg"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:text-blue-300 transition"
-          >
-            Medium
-          </a>
-          <a 
-            href="https://dev.to/minotaurg"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:text-blue-300 transition"
-          >
-            dev.to
-          </a>
-        </div>
-      </section>
+        <section id="contact" className="px-8 py-20 max-w-4xl mx-auto border-t border-gray-800">
+          <h2 className="text-3xl font-bold mb-8">Let's Connect</h2>
+          <p className="text-gray-400 mb-6">
+            Open to Technical Program Manager and Data/Analytics roles.
+            Currently exploring opportunities in Germany/EU.
+          </p>
+          
+          <div className="mb-8">
+            <a
+              href="mailto:adixavi7@gmail.com"
+              className="text-xl text-blue-400 hover:text-blue-300 transition"
+            >
+              adixavi7@gmail.com
+            </a>
+          </div>
+
+          <div className="flex flex-wrap gap-6">
+            <a
+              href="https://github.com/MinotaurG"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-blue-400 transition"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/aditya-shubham/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-blue-400 transition"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="/resume.pdf"
+              className="text-gray-400 hover:text-blue-400 transition"
+              download
+            >
+              Download Resume
+            </a>
+          </div>
+        </section>
 
       {/* Footer */}
       <footer className="px-8 py-8 text-center text-gray-500 border-t border-gray-800">
