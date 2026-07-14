@@ -1,174 +1,264 @@
-import FadeIn from "@/components/FadeIn"
-import { projects } from "@/data/projects"
-import Link from "next/link"
+import FadeIn from "@/components/FadeIn";
+import { getEngineeringProjects, getClientProjects } from "@/data/projects";
+import Link from "next/link";
 
 export default function Home() {
+  const engineeringProjects = getEngineeringProjects();
+  const clientProjects = getClientProjects();
+
   return (
-    <main className="min-h-screen bg-gray-950 text-white">
-      
-      {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center px-8 max-w-4xl mx-auto">
-        <FadeIn>
-          <h1 className="text-5xl font-bold mb-2">MinotaurG</h1>
-          <p className="text-2xl text-gray-500 mb-6">Aditya Shubham</p>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <p className="text-xl text-gray-400 mb-6">
-            Technical Program Manager | Data & Analytics | ML
-          </p>
-        </FadeIn>
-        <FadeIn delay={0.2}>
-          <p className="text-lg text-gray-300 max-w-2xl mb-8">
-            I build data pipelines, analytics automation, and full-stack applications. 
-          </p>
-        </FadeIn>
-        <FadeIn delay={0.3}>
-          <nav className="flex flex-wrap gap-4">
-            <a href="#projects" className="text-blue-400 hover:text-blue-300 transition">Projects</a>
-            <a href="#skills" className="text-blue-400 hover:text-blue-300 transition">Skills</a>
-            <a href="#contact" className="text-blue-400 hover:text-blue-300 transition">Contact</a>
-            <a 
-              href="/resume.pdf" 
-              className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition"
-              download
-            >
-              Resume ↓
-            </a>
-          </nav>
-        </FadeIn>
+    <main className="min-h-screen">
+      {/* Hero */}
+      <section className="relative min-h-screen flex flex-col justify-center px-8 overflow-hidden">
+        {/* Background layers */}
+        <div className="absolute inset-0">
+          {/* Labyrinth */}
+          <div
+            className="absolute inset-0 opacity-40"
+            style={{
+              backgroundImage: "url(/visuals/labyrinth-1.jpeg)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+
+          {/* Geometric overlay */}
+          <div className="absolute inset-0 opacity-[0.04]">
+            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern
+                  id="greek-key"
+                  x="0"
+                  y="0"
+                  width="60"
+                  height="60"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    d="M0 0h60v15h-45v30h30v-15h-15v-15h30v45h-60z"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="0.5"
+                    className="text-gold-400"
+                  />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#greek-key)" />
+            </svg>
+          </div>
+
+          {/* Gradient overlays for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-surface-900/90 via-surface-900/60 to-surface-900/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-surface-900 via-transparent to-surface-900/80" />
+        </div>
+
+        {/* Content */}
+        <div className="relative max-w-5xl mx-auto w-full">
+          <FadeIn>
+            <p className="text-gold-400 font-mono text-sm tracking-widest uppercase mb-4">
+              Enter the Labyrinth
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <h1 className="font-[family-name:var(--font-playfair)] text-6xl md:text-8xl font-black tracking-tight mb-4">
+              MinotaurG
+            </h1>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <p className="text-text-secondary text-xl md:text-2xl mb-8 max-w-2xl">
+              Software engineer building across TypeScript, Rust, Go, Python, and Java.
+              Systems thinker. Product builder. Open-source contributor.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.3}>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="#projects"
+                className="border border-gold-500 text-gold-400 px-6 py-3 hover:bg-gold-500 hover:text-surface-900 transition-colors font-medium"
+              >
+                View Work
+              </a>
+              <a
+                href="#contact"
+                className="border border-border text-text-secondary px-6 py-3 hover:border-text-secondary hover:text-text-primary transition-colors"
+              >
+                Get in Touch
+              </a>
+            </div>
+          </FadeIn>
+        </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="px-8 py-20 max-w-4xl mx-auto border-t border-gray-800">
-        <h2 className="text-3xl font-bold mb-12">Projects</h2>
-        
-        <div className="grid gap-6">
-          {projects.map((project) => (
-            <div 
-              key={project.slug}
-              className="bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-blue-500 transition"
-            >
-              <Link href={`/projects/${project.slug}`}>
-                <h3 className="text-xl font-semibold mb-2 hover:text-blue-400 transition">
+      {/* Client Work */}
+      <section className="px-8 py-20 border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <FadeIn>
+            <p className="text-bronze-400 font-mono text-sm tracking-widest uppercase mb-2">
+              Client Delivery
+            </p>
+            <h2 className="font-[family-name:var(--font-playfair)] text-4xl font-bold mb-12">
+              Shipped End-to-End
+            </h2>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {clientProjects.map((project) => (
+              <Link
+                key={project.slug}
+                href={`/projects/${project.slug}`}
+                className="group block bg-surface-800 border border-border rounded-lg p-6 hover:border-bronze-400 transition-colors"
+              >
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-bronze-400 transition-colors">
                   {project.title}
                 </h3>
+                <p className="text-text-secondary text-sm mb-4 line-clamp-2">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.slice(0, 4).map((tag) => (
+                    <span
+                      key={tag}
+                      className="bg-surface-700 px-2 py-1 rounded text-xs text-text-muted"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </Link>
-              <p className="text-gray-400 mb-4">{project.description}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.map((tag) => (
-                  <span 
-                    key={tag}
-                    className="bg-gray-800 px-3 py-1 rounded text-sm text-gray-300"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="flex gap-4">
-                <a 
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer" 
-                  className="text-blue-400 hover:text-blue-300"
-                >
-                  GitHub
-                </a>
-                {project.live && (
-                  <a 
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-400 hover:text-blue-300"
-                  >
-                    Live Demo
-                  </a>
-                )}
-                <Link 
-                  href={`/projects/${project.slug}`}
-                  className="text-blue-400 hover:text-blue-300"
-                >
-                  Read More
-                </Link>
-              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Engineering Projects */}
+      <section id="projects" className="px-8 py-20 border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <FadeIn>
+            <p className="text-gold-500 font-mono text-sm tracking-widest uppercase mb-2">
+              Engineering
+            </p>
+            <h2 className="font-[family-name:var(--font-playfair)] text-4xl font-bold mb-12">
+              Built from Scratch
+            </h2>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {engineeringProjects.map((project) => (
+              <Link
+                key={project.slug}
+                href={`/projects/${project.slug}`}
+                className="group block bg-surface-800 border border-border rounded-lg p-6 hover:border-gold-600 transition-colors"
+              >
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-gold-400 transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-text-secondary text-sm mb-4 line-clamp-2">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.slice(0, 4).map((tag) => (
+                    <span
+                      key={tag}
+                      className="bg-surface-700 px-2 py-1 rounded text-xs text-text-muted"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skills */}
+      <section id="skills" className="px-8 py-20 border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <FadeIn>
+            <h2 className="font-[family-name:var(--font-playfair)] text-4xl font-bold mb-12">
+              Arsenal
+            </h2>
+          </FadeIn>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-gold-400 font-mono text-sm uppercase tracking-wider mb-4">
+                Languages
+              </h3>
+              <ul className="space-y-2 text-text-secondary">
+                <li>TypeScript</li>
+                <li>Rust</li>
+                <li>Go</li>
+                <li>Python</li>
+                <li>Java</li>
+                <li>Shell</li>
+              </ul>
             </div>
-          ))}
+
+            <div>
+              <h3 className="text-gold-400 font-mono text-sm uppercase tracking-wider mb-4">
+                Frontend
+              </h3>
+              <ul className="space-y-2 text-text-secondary">
+                <li>React / Next.js</li>
+                <li>React Native</li>
+                <li>Tailwind</li>
+                <li>Framer Motion</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-gold-400 font-mono text-sm uppercase tracking-wider mb-4">
+                Backend
+              </h3>
+              <ul className="space-y-2 text-text-secondary">
+                <li>Node.js</li>
+                <li>Medusa.js</li>
+                <li>Spring Boot</li>
+                <li>REST / RPC</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-gold-400 font-mono text-sm uppercase tracking-wider mb-4">
+                Systems
+              </h3>
+              <ul className="space-y-2 text-text-secondary">
+                <li>Docker</li>
+                <li>CI/CD</li>
+                <li>AWS</li>
+                <li>CLI tooling</li>
+                <li>WebAssembly</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="px-8 py-20 max-w-4xl mx-auto border-t border-gray-800">
-        <h2 className="text-3xl font-bold mb-12">Skills</h2>
-        
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          
-          <div>
-            <h3 className="text-blue-400 font-semibold mb-4">Languages</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li>Python</li>
-              <li>JavaScript</li>
-              <li>TypeScript</li>
-              <li>Java</li>
-              <li>SQL</li>
-              <li>Bash</li>
-            </ul>
-          </div>
+      {/* Contact */}
+      <section id="contact" className="px-8 py-20 border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <FadeIn>
+            <h2 className="font-[family-name:var(--font-playfair)] text-4xl font-bold mb-6">
+              Find the Exit
+            </h2>
+            <p className="text-text-secondary mb-8 max-w-lg">
+              Open to software engineering roles. Currently exploring opportunities.
+            </p>
+          </FadeIn>
 
-          <div>
-            <h3 className="text-blue-400 font-semibold mb-4">Data and ML</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li>Pandas / NumPy</li>
-              <li>Scikit-learn</li>
-              <li>Transformers</li>
-              <li>ETL Pipelines</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-blue-400 font-semibold mb-4">Web and Backend</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li>React / Next.js</li>
-              <li>Node.js</li>
-              <li>Spring Boot</li>
-              <li>REST APIs</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-blue-400 font-semibold mb-4">Tools and Infra</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li>Git / GitHub</li>
-              <li>Linux</li>
-              <li>Docker</li>
-              <li>AWS / DynamoDB</li>
-            </ul>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Contact Section */}
-        <section id="contact" className="px-8 py-20 max-w-4xl mx-auto border-t border-gray-800">
-          <h2 className="text-3xl font-bold mb-8">Let's Connect</h2>
-          <p className="text-gray-400 mb-6">
-            Open to Technical Program Manager and Data/Analytics roles.
-            Currently exploring opportunities in Germany/EU.
-          </p>
-          
-          <div className="mb-8">
+          <div className="flex flex-wrap gap-6">
             <a
               href="mailto:adixavi7@gmail.com"
-              className="text-xl text-blue-400 hover:text-blue-300 transition"
+              className="text-gold-400 hover:text-gold-500 transition-colors"
             >
               adixavi7@gmail.com
             </a>
-          </div>
-
-          <div className="flex flex-wrap gap-6">
             <a
               href="https://github.com/MinotaurG"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-blue-400 transition"
+              className="text-text-secondary hover:text-text-primary transition-colors"
             >
               GitHub
             </a>
@@ -176,25 +266,18 @@ export default function Home() {
               href="https://www.linkedin.com/in/aditya-shubham/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-blue-400 transition"
+              className="text-text-secondary hover:text-text-primary transition-colors"
             >
               LinkedIn
             </a>
-            <a
-              href="/resume.pdf"
-              className="text-gray-400 hover:text-blue-400 transition"
-              download
-            >
-              Download Resume
-            </a>
           </div>
-        </section>
+        </div>
+      </section>
 
       {/* Footer */}
-      <footer className="px-8 py-8 text-center text-gray-500 border-t border-gray-800">
-        <p>2025 MinotaurG</p>
+      <footer className="px-8 py-8 text-center text-text-muted border-t border-border">
+        <p className="font-mono text-sm">2025 MinotaurG</p>
       </footer>
-
     </main>
-  )
+  );
 }

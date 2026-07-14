@@ -1,108 +1,210 @@
 export interface Project {
-  slug: string
-  title: string
-  description: string
-  longDescription: string
-  tags: string[]
-  github: string
-  live?: string
-  features: string[]
-  challenges?: string
-  learnings?: string
+  slug: string;
+  title: string;
+  description: string;
+  longDescription: string;
+  tags: string[];
+  github?: string;
+  live?: string;
+  features: string[];
+  challenges?: string;
+  learnings?: string;
+  category: "engineering" | "client";
 }
 
 export const projects: Project[] = [
   {
-    slug: "football-sentiment-analysis",
-    title: "Football Sentiment Analysis",
-    description: "ML pipeline comparing 5 NLP methods. Transformer model achieved 98.6% accuracy on FIFA World Cup tweets.",
-    longDescription: "A data science project analyzing the relationship between public sentiment on social media and football player/team performance. Built with best development practices including git branching, modular code, and comprehensive documentation.",
-    tags: ["Python", "Transformers", "Scikit-learn", "NLP", "Pandas", "ML"],
-    github: "https://github.com/MinotaurG/football-sentiment-analysis",
+    slug: "chess-analyzer",
+    title: "Chess Analyzer",
+    description:
+      "Lichess sync, pattern detection, and training engine. Rust workspace with core and web crates.",
+    longDescription:
+      "A systems-level chess analysis engine built in Rust. Syncs games from Lichess, runs pattern detection on move sequences, and produces training recommendations. Workspace architecture separates core logic from the web layer.",
+    tags: ["Rust", "Systems", "WebAssembly", "Chess", "CLI"],
+    github: "https://github.com/MinotaurG/chess-analyzer",
     features: [
-      "5 sentiment analysis methods compared (TextBlob, VADER, Football-VADER, ML, Transformer)",
-      "Twitter-RoBERTa transformer achieving 98.6% accuracy",
-      "ML model trained on 18,000 labeled tweets (80.4% accuracy)",
-      "Custom football-specific sentiment lexicon",
-      "7 visualization chart types",
-      "Sentiment-performance correlation analysis"
+      "Rust workspace with core + web crates",
+      "Lichess API integration for game sync",
+      "Pattern detection on move sequences",
+      "Training recommendation engine",
+      "WebAssembly compilation target for browser use",
     ],
-    challenges: "The biggest challenge was handling football-specific language. Words like 'killer' (killer pass), 'destroyed' (destroyed the defense), and 'sick' (sick goal) have positive meanings in football context but negative sentiment in general English. I built a custom Football-VADER lexicon to handle these cases.",
-    learnings: "Pre-tournament hype doesn't predict success (correlation +0.06), but ongoing fan sentiment correlates moderately with performance (+0.645 for EPL season). Transformers significantly outperform rule-based methods for social media text."
+    category: "engineering",
   },
   {
-    slug: "online-bookstore",
-    title: "Online Bookstore Application",
-    description: "Full-stack e-commerce app with DynamoDB, Docker, CI/CD pipeline, and 134 automated tests. Built during Amazon ATLAS.",
-    longDescription: "A production-ready full-stack online bookstore built with React and Spring Boot, featuring Amazon-style ASIN inventory management, personalized recommendations, and comprehensive admin tools. Developed as part of the Amazon ATLAS Training Program.",
-    tags: ["Java", "Spring Boot", "React", "DynamoDB", "Docker", "CI/CD"],
-    github: "https://github.com/MinotaurG/Online_Bookstore_Application",
+    slug: "mellow-nova",
+    title: "Mellow Nova",
+    description:
+      "Personal finance mobile app. Bank statement ingestion, spending breakdown, bills tracking, AI chat.",
+    longDescription:
+      "A local-first personal finance app that ingests bank statements, categorizes transactions, tracks recurring bills, and offers an AI chat interface for querying your financial data naturally.",
+    tags: ["React Native", "Expo", "TypeScript", "AI", "Mobile"],
+    github: "https://github.com/MinotaurG/mellow-nova",
     features: [
-      "Full CRUD with DynamoDB backend",
-      "134 automated tests (58% code coverage)",
-      "CI/CD pipeline with GitHub Actions",
-      "Docker Compose deployment",
-      "Amazon-style ASIN inventory system",
-      "Bulk upload via CSV/JSON",
-      "Personalized recommendations engine",
-      "Admin panel with inventory management"
+      "Bank statement PDF/CSV ingestion",
+      "Automatic transaction categorization",
+      "Spending breakdown with visualizations",
+      "Recurring bills detection and tracking",
+      "AI chat interface for natural language financial queries",
+      "Local-first architecture, no data leaves your device",
     ],
-    challenges: "Implementing deterministic ID generation so the same book always gets the same ID, preventing duplicates during bulk imports. Also built a browsing history feature using a LinkedList with FIFO ordering.",
-    learnings: "Production-ready practices: Docker containerization, CI/CD pipelines, testing strategies, and scalable REST APIs. DynamoDB integration taught me NoSQL data modeling."
+    category: "engineering",
   },
   {
-    slug: "sql-olap-analytics",
-    title: "SQL & OLAP Analytics",
-    description: "SQL database projects demonstrating OLAP operations: drill down, rollup, cube, slice, and dice on sales data.",
-    longDescription: "SQL database management and OLAP analytics projects demonstrating data querying, reporting, and analytical operations across multiple domains.",
-    tags: ["SQL", "PostgreSQL", "OLAP", "Analytics", "Data Modeling"],
-    github: "https://github.com/MinotaurG/sql-olap-analytics",
+    slug: "jobagent",
+    title: "JobAgent",
+    description:
+      "AI-powered job search automation. Go rules engine paired with Python AI orchestrator.",
+    longDescription:
+      "A polyglot system that automates job searching. A Go rules engine handles filtering, scoring, and matching logic while a Python orchestrator manages AI-powered cover letter generation, application tracking, and multi-platform scraping.",
+    tags: ["Go", "Python", "AI", "Automation", "Polyglot"],
+    github: "https://github.com/MinotaurG/jobagent",
     features: [
-      "OLAP Operations: Drill Down, Roll Up, Cube, Slice, Dice",
-      "Academic Management System with student analytics",
-      "Event Management System with attendance tracking",
-      "Complex SQL queries and aggregations",
-      "Data modeling and normalization"
+      "Go rules engine for job filtering and scoring",
+      "Python AI orchestrator for cover letter generation",
+      "Multi-platform job board scraping",
+      "Application tracking and status management",
+      "Configurable matching criteria",
     ],
-    challenges: "Designing efficient queries for multi-dimensional analysis while maintaining readability and performance.",
-    learnings: "Deep understanding of analytical processing, data warehousing concepts, and how to translate business questions into SQL queries."
+    category: "engineering",
   },
   {
-    slug: "log-detective",
-    title: "Log Detective",
-    description: "Log analysis toolkit using grep, awk, sed with SQLite storage for pattern identification.",
-    longDescription: "A log analysis toolkit for Support Engineers. Parses web server logs, identifies patterns (errors, slow requests, suspicious IPs), and stores insights in a SQLite database.",
-    tags: ["Bash", "SQL", "SQLite", "Linux", "Analytics"],
-    github: "https://github.com/MinotaurG/log-detective",
+    slug: "medusa-plugins",
+    title: "Medusa Plugins (OSS)",
+    description:
+      "3 published npm packages for Indian e-commerce: Razorpay payments, Shiprocket fulfillment, Cash on Delivery.",
+    longDescription:
+      "A suite of open-source plugins extending Medusa.js for the Indian market. Handles UPI/card/wallet payments via Razorpay, multi-courier shipping via Shiprocket, and Cash on Delivery workflows. Published on npm and used in production.",
+    tags: ["TypeScript", "Medusa.js", "npm", "Open Source", "Payments"],
+    github: "https://github.com/MinotaurG/medusa-payment-razorpay",
+    live: "https://www.npmjs.com/package/@minotaurg/medusa-payment-razorpay",
     features: [
-      "Parse and analyze log files using grep, awk, sed",
-      "Store insights in SQLite database",
-      "Query patterns: errors, slow requests, suspicious IPs",
-      "Regular expression pattern matching",
-      "Automated analysis pipeline"
+      "@minotaurg/medusa-payment-razorpay: UPI, cards, wallets, net banking",
+      "@minotaurg/medusa-fulfillment-shiprocket: multi-courier shipping",
+      "medusa-payment-cod: Cash on Delivery with order verification",
+      "Full webhook handling and idempotent processing",
+      "Production-tested on live e-commerce store",
     ],
-    challenges: "Designing regex patterns that catch various log formats while remaining performant on large files.",
-    learnings: "Advanced text processing and SQL for storing and querying structured data from unstructured logs."
+    category: "engineering",
   },
   {
-    slug: "server-health-dashboard",
-    title: "Server Health Dashboard",
-    description: "Real-time terminal dashboard monitoring CPU, memory, disk with color-coded alerts.",
-    longDescription: "A real-time terminal dashboard that monitors server health metrics with auto-refresh every 5 seconds.",
-    tags: ["Bash", "Linux", "Monitoring", "DevOps"],
-    github: "https://github.com/MinotaurG/server-health-dashboard",
+    slug: "fb-flat-finder",
+    title: "fb-flat-finder",
+    description:
+      "Facebook Marketplace flat scraper with ML classification and model fine-tuning.",
+    longDescription:
+      "An automated system for finding rental listings on Facebook Marketplace. Scrapes listings with Playwright, classifies them using a fine-tuned HuggingFace model, and surfaces matches through a Flask dashboard.",
+    tags: ["Python", "Playwright", "ML", "Flask", "HuggingFace"],
+    github: "https://github.com/MinotaurG/fb-flat-finder",
     features: [
-      "CPU, Memory, Disk monitoring",
-      "Color-coded status (green < 70%, yellow 70-90%, red > 90%)",
-      "Top 5 processes by CPU usage",
-      "Network connections tracking",
-      "Auto-refresh every 5 seconds"
+      "Automated Playwright scraper for Facebook Marketplace",
+      "ML classification of listing quality and relevance",
+      "HuggingFace model fine-tuning on labeled listing data",
+      "Flask dashboard for browsing and filtering matches",
+      "Configurable search criteria and location targeting",
     ],
-    challenges: "Parsing output from various Linux commands consistently across different systems.",
-    learnings: "Linux system administration commands and process monitoring fundamentals."
-  }
-]
+    category: "engineering",
+  },
+  {
+    slug: "ctx",
+    title: "ctx",
+    description:
+      "Project context tracker for AI chat continuity. Rust CLI, published via Homebrew.",
+    longDescription:
+      "A CLI tool that maintains project context across AI chat sessions. Captures directory structure, recent changes, and configuration to give AI assistants the context they need without re-explaining. Built in Rust, distributed via Homebrew.",
+    tags: ["Rust", "CLI", "Homebrew", "Developer Tools"],
+    github: "https://github.com/MinotaurG/ctx",
+    features: [
+      "Captures project structure and recent git changes",
+      "Generates concise context summaries for AI chats",
+      "Respects .gitignore and custom exclusion patterns",
+      "Published via Homebrew for easy installation",
+      "Fast execution, written in Rust",
+    ],
+    category: "engineering",
+  },
+  {
+    slug: "sd18-store",
+    title: "SD18 Store",
+    description:
+      "Full sports e-commerce platform built on Medusa v2 + Next.js. Includes the 3 OSS plugins built for this.",
+    longDescription:
+      "A production e-commerce platform for a sports brand. Built end-to-end on Medusa v2 with a Next.js storefront. The Razorpay, Shiprocket, and COD plugins were created specifically for this project and later extracted as open-source packages.",
+    tags: ["Medusa v2", "Next.js", "TypeScript", "E-commerce"],
+    live: "https://sd18store.com",
+    features: [
+      "Full storefront with product catalog and cart",
+      "Razorpay payment integration (UPI, cards, wallets)",
+      "Shiprocket multi-courier fulfillment",
+      "Cash on Delivery with verification workflow",
+      "Admin dashboard for inventory and order management",
+    ],
+    category: "client",
+  },
+  {
+    slug: "siddhidatri",
+    title: "Siddhidatri Website",
+    description:
+      "Corporate website with admin panel, careers, leadership, and CSR pages. Next.js + Sanity CMS.",
+    longDescription:
+      "A corporate website with a full admin panel powered by Sanity CMS. Covers careers, leadership profiles, CSR initiatives, and company information. Content team manages everything through the CMS without developer intervention.",
+    tags: ["Next.js", "Sanity", "TypeScript", "CMS"],
+    live: "https://www.siddhidatriaahar.com/",
+    features: [
+      "Sanity CMS for content management",
+      "Careers page with job listings and applications",
+      "Leadership and team profiles",
+      "CSR and company initiatives section",
+      "Fully editable by non-technical team",
+    ],
+    category: "client",
+  },
+  {
+    slug: "finder-io",
+    title: "finder.io (500apps)",
+    description:
+      "SEO growth from 300 to 900 signups/month. Custom ML model for keyword analysis and traffic forecasting.",
+    longDescription:
+      "Took a mid-tier product from 300 to 900 monthly signups through custom ML-driven SEO strategy. Built NLP and NeuralProphet models for keyword analysis and traffic forecasting. Product went from middle of the pack to #1 in a 40-product suite.",
+    tags: ["Python", "NLP", "NeuralProphet", "SEO", "ML"],
+    live: "https://finder.io",
+    features: [
+      "Custom ML model for keyword opportunity scoring",
+      "NeuralProphet traffic forecasting",
+      "NLP-based content gap analysis",
+      "300 to 900 monthly signups (3x growth)",
+      "Took product to #1 ranking in 40-product suite",
+    ],
+    category: "client",
+  },
+  {
+    slug: "mulyam-jewels",
+    title: "Mulyam Jewels",
+    description:
+      "D2C jewelry storefront. React SPA with mobile-first design.",
+    longDescription:
+      "A direct-to-consumer jewelry storefront built as a React single-page application. Mobile-first design with product catalogs, filtering, and a streamlined purchase flow.",
+    tags: ["React", "Vite", "TypeScript", "D2C", "Mobile-first"],
+    live: "https://mulyamjewels.com/",
+    features: [
+      "Mobile-first responsive design",
+      "Product catalog with category filtering",
+      "Image-heavy layout optimized for performance",
+      "Streamlined purchase flow",
+      "Built with Vite for fast development and builds",
+    ],
+    category: "client",
+  },
+];
 
 export function getProjectBySlug(slug: string): Project | undefined {
-  return projects.find(p => p.slug === slug)
+  return projects.find((p) => p.slug === slug);
+}
+
+export function getEngineeringProjects(): Project[] {
+  return projects.filter((p) => p.category === "engineering");
+}
+
+export function getClientProjects(): Project[] {
+  return projects.filter((p) => p.category === "client");
 }

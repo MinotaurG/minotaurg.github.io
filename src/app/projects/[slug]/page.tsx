@@ -1,123 +1,130 @@
-import { projects, getProjectBySlug } from "@/data/projects"
-import Link from "next/link"
-import { notFound } from "next/navigation"
+import { projects, getProjectBySlug } from "@/data/projects";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug,
-  }))
+  }));
 }
 
 interface PageProps {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }
 
 export default async function ProjectPage({ params }: PageProps) {
-  const { slug } = await params
-  const project = getProjectBySlug(slug)
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
 
   if (!project) {
-    notFound()
+    notFound();
   }
 
+  const accentColor =
+    project.category === "client" ? "bronze-400" : "gold-400";
+
   return (
-    <main className="min-h-screen bg-gray-950 text-white">
-      <article className="px-8 py-20 max-w-4xl mx-auto">
-        
-        {/* Back Link */}
-        <Link 
-          href="/#projects"
-          className="text-blue-400 hover:text-blue-300 transition mb-8 inline-block"
+    <main className="min-h-screen pt-24 px-8">
+      <article className="max-w-4xl mx-auto">
+        <Link
+          href="/projects"
+          className={`text-${accentColor} hover:opacity-80 transition text-sm font-mono mb-8 inline-block`}
         >
-          Back to Projects
+          &larr; All Projects
         </Link>
 
-        {/* Header */}
-        <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
-        
-        {/* Tags */}
+        <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold mb-4">
+          {project.title}
+        </h1>
+
         <div className="flex flex-wrap gap-2 mb-6">
           {project.tags.map((tag) => (
-            <span 
+            <span
               key={tag}
-              className="bg-gray-800 px-3 py-1 rounded text-sm text-gray-300"
+              className="bg-surface-700 px-3 py-1 rounded text-sm text-text-muted"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        {/* Links */}
         <div className="flex gap-4 mb-12">
-          <a 
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-gray-800 px-4 py-2 rounded hover:bg-gray-700 transition"
-          >
-            View on GitHub
-          </a>
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-border px-4 py-2 rounded text-sm text-text-secondary hover:border-text-secondary hover:text-text-primary transition-colors"
+            >
+              GitHub
+            </a>
+          )}
           {project.live && (
-            <a 
+            <a
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition"
+              className={`bg-${accentColor} text-surface-900 px-4 py-2 rounded text-sm font-medium hover:opacity-90 transition`}
             >
-              Live Demo
+              Live Site
             </a>
           )}
         </div>
 
-        {/* Description */}
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Overview</h2>
-          <p className="text-gray-300 leading-relaxed">{project.longDescription}</p>
+          <p className="text-text-secondary leading-relaxed text-lg">
+            {project.longDescription}
+          </p>
         </section>
 
-        {/* Features */}
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Features</h2>
-          <ul className="space-y-2">
+          <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-bold mb-6">
+            Features
+          </h2>
+          <ul className="space-y-3">
             {project.features.map((feature, index) => (
-              <li key={index} className="text-gray-300 flex items-start">
-                <span className="text-blue-400 mr-3">-</span>
+              <li
+                key={index}
+                className="text-text-secondary flex items-start"
+              >
+                <span className={`text-${accentColor} mr-3 mt-1`}>&#x2022;</span>
                 {feature}
               </li>
             ))}
           </ul>
         </section>
 
-        {/* Challenges */}
         {project.challenges && (
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold mb-4">Challenges</h2>
-            <p className="text-gray-300 leading-relaxed">{project.challenges}</p>
+            <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-bold mb-4">
+              Challenges
+            </h2>
+            <p className="text-text-secondary leading-relaxed">
+              {project.challenges}
+            </p>
           </section>
         )}
 
-        {/* Learnings */}
         {project.learnings && (
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold mb-4">What I Learned</h2>
-            <p className="text-gray-300 leading-relaxed">{project.learnings}</p>
+            <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-bold mb-4">
+              Learnings
+            </h2>
+            <p className="text-text-secondary leading-relaxed">
+              {project.learnings}
+            </p>
           </section>
         )}
 
-        {/* Back Link */}
-        <Link 
-          href="/#projects"
-          className="text-blue-400 hover:text-blue-300 transition"
-        >
-          Back to Projects
-        </Link>
-
+        <div className="border-t border-border pt-8 mt-16">
+          <Link
+            href="/projects"
+            className={`text-${accentColor} hover:opacity-80 transition text-sm font-mono`}
+          >
+            &larr; All Projects
+          </Link>
+        </div>
       </article>
-
-      {/* Footer */}
-      <footer className="px-8 py-8 text-center text-gray-500 border-t border-gray-800">
-        <p>2025 MinotaurG</p>
-      </footer>
     </main>
-  )
+  );
 }
